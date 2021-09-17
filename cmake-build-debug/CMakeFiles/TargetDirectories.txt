@@ -1,0 +1,3 @@
+/Users/danielsteffen/CLionProjects/BrandNewProject1/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/danielsteffen/CLionProjects/BrandNewProject1/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/danielsteffen/CLionProjects/BrandNewProject1/cmake-build-debug/CMakeFiles/BrandNewProject1.dir
