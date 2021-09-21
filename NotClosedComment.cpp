@@ -21,13 +21,10 @@ void NotClosedCommentAutomaton::S1(const std::string& input) {
         index++;
         S2(input);
     }
-    if ((input[index] != '|') | (input[index] != '#')) {
+    if ((input[index] != '|')) {
         inputRead++;
         index++;
-        S4(input);
-    }
-    else {
-        Serr();
+        return;
     }
 }
 
@@ -37,6 +34,7 @@ void NotClosedCommentAutomaton::S2(const std::string& input) {
     }
     if (index == input.size()-1) {
         inputRead++;
+        return;
     }
     if (input[index] != '|') {
         inputRead++;

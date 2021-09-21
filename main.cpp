@@ -34,7 +34,8 @@ int main(int argc, char** argv) {
 
     lexer->Run(input);
     lexer->ToString();
-    cout << "Total Tokens = " << lexer->GetSize();
+    cout << "Total Tokens = " << lexer->GetSize() << endl;
+    cout << endl;
 
 //delete lexer;
 

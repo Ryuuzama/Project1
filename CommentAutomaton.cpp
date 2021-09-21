@@ -20,7 +20,7 @@ void CommentAutomaton::S1(const std::string& input) {
         index++;
         S2(input);
     }
-    if ((input[index] != '|') | (input[index] != '#')) {
+    else if ((input[index] != '|')) {
             inputRead++;
             index++;
             S4(input);
@@ -50,8 +50,20 @@ void CommentAutomaton::S2(const std::string& input) {
 }
 
 void CommentAutomaton::S3(const std::string& input) {
-    if (input[index] == '#') {
+    if (input.at(index) == '#') {
+        inputRead++;
         return;
+    }
+    else if (input.at(index) == '|') {
+        inputRead++;
+        index++;
+        S3(input);
+    }
+
+    else {
+        inputRead++;
+        index++;
+        S2(input);
     }
 }
 
