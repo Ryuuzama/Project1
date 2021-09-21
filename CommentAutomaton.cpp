@@ -31,6 +31,10 @@ void CommentAutomaton::S1(const std::string& input) {
 }
 
 void CommentAutomaton::S2(const std::string& input) {
+    if (index == input.size()-1) {
+        inputRead++;
+        return;
+    }
     if (input[index] == '\n') {
         newLines++;
     }
