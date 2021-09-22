@@ -3,6 +3,7 @@
 //
 
 #include "NotClosedComment.h"
+#include <istream>
 
 void NotClosedCommentAutomaton::S0(const std::string& input) {
     if (input[index] == '#') {
@@ -22,20 +23,17 @@ void NotClosedCommentAutomaton::S1(const std::string& input) {
         index++;
         S2(input);
     }
-    if ((input[index] != '|')) {
-        inputRead++;
-        index++;
-        return;
+    else if ((input[index] != '|')) {
+        Serr();
     }
 }
 
 void NotClosedCommentAutomaton::S2(const std::string& input) {
+    if (index == input.size()-1) {
+        return;
+    }
     if (input[index] == '\n') {
         newLines++;
-    }
-    if (index == input.size()-1) {
-        inputRead++;
-        return;
     }
     if (input[index] != '|') {
         inputRead++;
@@ -50,19 +48,26 @@ void NotClosedCommentAutomaton::S2(const std::string& input) {
 }
 
 void NotClosedCommentAutomaton::S3(const std::string& input) {
-    if (input[index] == '#') {
+    if (index == input.size()-1) {
         return;
-    }
-}
-
-void NotClosedCommentAutomaton::S4(const std::string& input) {
-    if (input[index] != '\n') {
-        inputRead++;
-        index++;
-        S4(input);
     }
     if (input[index] == '\n') {
+        newLines++;
+    }
+    if
+    (input.at(index) == '#') {
+        inputRead++;
+        Serr();
+    }
+    else if (input.at(index) == '|') {
+        inputRead++;
         index++;
-        return;
+        S3(input);
+    }
+
+    else {
+        inputRead++;
+        index++;
+        S2(input);
     }
 }
