@@ -63,7 +63,7 @@ void Lexer::Run(std::string& input) {
 
 
         // handling whitespace in between tokens
-        while ((input.substr(0,1) == " ") | (input.substr(0,1) == "\n")) {
+        while ((input.substr(0,1) == " ") || (input.substr(0,1) == "\n") || (input.substr(0,1) == "\t")) {
 
             if (input.substr(0,1) == "\n") {
                 lineNumber++;
