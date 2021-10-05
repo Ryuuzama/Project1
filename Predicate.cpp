@@ -16,7 +16,7 @@ string Predicate::toString() {
     ostringstream os;
     os << name << "(";
     for (unsigned int i = 0; i < preParameter.size(); i++) {
-        if (i != preParameter.size()) {
+        if (i != preParameter.size()-1) {
             os << preParameter.at(i).toString() << ",";
         }
         else {
