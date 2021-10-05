@@ -25,7 +25,7 @@ string DatalogProgram::toString() {
 
         os << "Facts(" << factsVector.size() << "):" << endl;
         for (unsigned int i = 0; i < factsVector.size(); i++) {
-            os << factsVector.at(i).toString() << endl;
+            os << factsVector.at(i).toString()  << "." << endl;
             for (unsigned int j = 0; j < factsVector.at(i).GetParameters().size(); j++) {
                 Domain.insert(factsVector.at(i).GetParameters().at(j).toString());
             }
@@ -33,11 +33,11 @@ string DatalogProgram::toString() {
         //add stuff to domain
         os << "Rules(" << rulesVector.size() << "):" << endl;
     for (unsigned int i = 0; i < rulesVector.size(); i++) {
-        os << rulesVector.at(i).toString() << endl;
+        os << rulesVector.at(i).toString() << "." << endl;
     }
         os << "Queries(" << queriesVector.size() << "):" << endl;
     for (unsigned int i = 0; i < queriesVector.size(); i++) {
-        os << queriesVector.at(i).toString() << endl;
+        os << queriesVector.at(i).toString() << "?" << endl;
     }
         os << "Domain(";
         for (string s : Domain) {

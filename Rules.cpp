@@ -15,13 +15,12 @@ string Rules::toString() {
     ostringstream os;
     os << headPredicate.toString() << " :- ";
     for (unsigned int i = 0; i < multiplePredicates.size(); i++) {
-        if (i != multiplePredicates.size()) {
+        if (i != multiplePredicates.size()-1) {
             os << multiplePredicates.at(i).Predicate::toString() << ",";
         }
         else {
             os << multiplePredicates.at(i).Predicate::toString();
         }
     }
-    os << ".";
     return os.str();
 }
