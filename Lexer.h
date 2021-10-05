@@ -27,6 +27,10 @@ public:
     int GetSize() {
         return tokens.size();
     }
+
+    vector<Token*> getTokens() {
+        return tokens;
+    }
     
     // TODO: add other public methods here
 

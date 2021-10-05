@@ -2,14 +2,17 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include "Parser.h"
 using namespace std;
 
 int main(int argc, char** argv) {
     //cout << "hello";
 
+    vector<Token*> mainTokens;
     Lexer* lexer = new Lexer();
+    DatalogProgram datalogprogramObject;
 
-// TODO
+
     ifstream in(argv[1]);
     string becomeString;
     string yeah = argv[1];
@@ -33,8 +36,15 @@ int main(int argc, char** argv) {
     //cout << oneInput.str();*/
 
     lexer->Run(input);
-    lexer->ToString();
-    cout << "Total Tokens = " << lexer->GetSize();
+    //lexer->ToString();
+
+    //cout << "Total Tokens = " << lexer->GetSize();
+    mainTokens = lexer->getTokens();
+    Parser parser = Parser(mainTokens);
+    parser.parse();
+    cout << parser.datalogProgram.toString();
+
+
 
 //delete lexer;
 
