@@ -42,7 +42,6 @@ int main(int argc, char** argv) {
     mainTokens = lexer->getTokens();
     Parser parser = Parser(mainTokens);
     parser.parse();
-    cout << parser.datalogProgram.toString();
 
 
 

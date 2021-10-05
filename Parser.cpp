@@ -13,12 +13,16 @@ using namespace std;
 //When iterating through Tokens, if the Token has TokenType COMMENT, remove it
 
 Parser::Parser(vector<Token*> ConTokens) {
-    for (unsigned int i = 0; ConTokens.size() < 0; i++) {
-        if ((ConTokens.at(i)->GetString()) == ("COMMENT")) {
-            ConTokens.erase(ConTokens.begin()+i);
+    for (unsigned int i = 0; i < ConTokens.size(); i++) {
+        if ((ConTokens.at(i)->GetTokenType()) != TokenType::COMMENT) {
+            newTokens.push_back(ConTokens.at(i));
         }
     }
-    newTokens = ConTokens;
+
+
+    /*for (unsigned int i = 0; i < newTokens.size(); i++) {
+        newTokens.at(i)->BecomeString(newTokens.at(i)->GetTokenType(),newTokens.at(i)->GetString(),newTokens.at(i)->GetLine());
+    }*/
     datalogProgram = DatalogProgram();
 }
 
@@ -47,7 +51,9 @@ void Parser::parse(){
     {
         cout << "Failure!" << endl;
         badToken->BecomeString(badToken->GetTokenType(),badToken->GetString(),badToken->GetLine());
+        return;
     }
+    cout << datalogProgram.toString();
 }
 
 void Parser::parseFact() {
