@@ -39,7 +39,7 @@ string DatalogProgram::toString() {
     for (unsigned int i = 0; i < queriesVector.size(); i++) {
         os << queriesVector.at(i).toString() << "?" << endl;
     }
-        os << "Domain(";
+        os << "Domain(" << Domain.size() << "):" << endl;
         for (string s : Domain) {
             os << s << endl;
         }
