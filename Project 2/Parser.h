@@ -16,6 +16,8 @@ public:
     vector<Token*> newTokens;
     DatalogProgram datalogProgram;
 
+    const DatalogProgram &getDatalogProgram() const;
+
 
     void parse();
     void parseFact();

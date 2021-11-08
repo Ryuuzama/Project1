@@ -30,6 +30,14 @@ public:
         rulesVector.push_back(rules);
     }
 
+    const vector<Predicate> &getSchemesVector() const;
+
+    const vector<Predicate> &getFactsVector() const;
+
+    const vector<Predicate> &getQueriesVector() const;
+
+    const vector<Rules> &getRulesVector() const;
+
 
 };
 

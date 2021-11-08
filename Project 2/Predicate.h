@@ -15,6 +15,9 @@ public:
     Predicate(string name, vector<Parameter> preParameter);
     string name;
     vector<Parameter> preParameter;
+
+    const vector<Parameter> &getPreParameter() const;
+
     string toString();
     void setName(string newName) {
         name = newName;

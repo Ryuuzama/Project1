@@ -13,6 +13,12 @@ public:
     string toString() {
         return name;
     }
+    bool isConstant(){
+        if(name[0]=='\''){
+            return true;
+        }
+        return false;
+    }
 };
 
 

@@ -49,11 +49,11 @@ void Parser::parse(){
     }
     catch (Token* badToken)
     {
-        cout << "Failure!" << endl;
+        /*cout << "Failure!" << endl;
         badToken->BecomeString(badToken->GetTokenType(),badToken->GetString(),badToken->GetLine());
-        return;
+        return;*/
     }
-    cout << datalogProgram.toString();
+    //cout << datalogProgram.toString();
 }
 
 void Parser::parseFact() {
@@ -211,4 +211,8 @@ Parameter Parser::parameter(Predicate &predicateObject) {
     predicateObject.addParameter(para);
     return para;
 
+}
+
+const DatalogProgram &Parser::getDatalogProgram() const {
+    return datalogProgram;
 }

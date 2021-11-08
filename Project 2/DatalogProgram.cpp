@@ -46,3 +46,19 @@ string DatalogProgram::toString() {
 
         return os.str();
 }
+
+const vector<Predicate> &DatalogProgram::getSchemesVector() const {
+    return schemesVector;
+}
+
+const vector<Predicate> &DatalogProgram::getFactsVector() const {
+    return factsVector;
+}
+
+const vector<Predicate> &DatalogProgram::getQueriesVector() const {
+    return queriesVector;
+}
+
+const vector<Rules> &DatalogProgram::getRulesVector() const {
+    return rulesVector;
+}
