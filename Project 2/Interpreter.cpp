@@ -23,12 +23,15 @@ void Interpreter::Interpret() {
             newRelation.setName(schemesVector.at(i).getName());
             newHeader.setHeader(schemesVector.at(i).GetParameters());
             newRelation.setHeader(newHeader);
-            for (unsigned int i = 0; i < factsVector.size(); i++) {
-                newTuple.setTuple(factsVector.at(i).GetParameters());
-                newRelation.addTuple(newTuple);
-                newTuple = Tuple();
+            for (unsigned int j = 0; j < factsVector.size(); j++) {
+                if (factsVector.at(j).getName() == schemesVector.at(i).getName()) {
+                    newTuple.setTuple(factsVector.at(j).GetParameters());
+                    newRelation.addTuple(newTuple);
+                    newTuple = Tuple();
+                }
             }
             newDatabase.addToMap(newRelation.getName(), newRelation);
+            newRelation = Relation();
         }
         //newDatabase.maptoString();
 
