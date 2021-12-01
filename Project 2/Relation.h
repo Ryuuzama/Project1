@@ -13,8 +13,8 @@ private:
     string name;
     Header header;
     set<Tuple> tupleSet;
-    vector<pair<int,int>> pairVector;
-    pair<int, int> pair1;
+    vector<pair<unsigned int,unsigned int>> pairVector;
+    pair<unsigned int, unsigned int> pair1;
     bool Added;
 public:
     Header getHeader();

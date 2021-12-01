@@ -23,7 +23,7 @@ public:
             Attributes.push_back(variables.at(i));
         }
     }
-    int getSize(){
+    unsigned int getSize(){
         return Attributes.size();
     }
     vector<string> getVector(){
