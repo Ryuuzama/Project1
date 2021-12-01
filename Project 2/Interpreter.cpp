@@ -106,8 +106,8 @@ void Interpreter::evaluateRules() {
             if (evaluateRule(rulesVector.at(i))) {
                 Added = true;
             }
-            index++;
         }
+        index++;
     }
     cout << endl;
     cout << endl << "Schemes populated after " << index << " passes through the Rules." << endl << endl;
