@@ -150,7 +150,7 @@ bool Relation::Unite(Relation relation2) {
         if (tupleSet.insert(t).second) {
             //cout << "successfully added this tuple to the database " << endl;
             for (unsigned int i = 0; i < t.getVector().size(); i++) {
-                cout <<  header.getVector().at(i) << "=" << t.getVector().at(i);
+                cout <<  "  " << header.getVector().at(i) << "=" << t.getVector().at(i);
                 if (i < t.getVector().size()-1) {
                     cout << ", ";
                 }
