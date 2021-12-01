@@ -146,11 +146,13 @@ Tuple Relation::combineTuples(Tuple tuple1, Tuple tuple2) {
 }
 
 bool Relation::Unite(Relation relation2) {
+    Added = false;
     for (Tuple t : relation2.getTupleSet()){
         if (tupleSet.insert(t).second) {
+            cout << "  ";
             //cout << "successfully added this tuple to the database " << endl;
             for (unsigned int i = 0; i < t.getVector().size(); i++) {
-                cout <<  "  " << header.getVector().at(i) << "=" << t.getVector().at(i);
+                cout << header.getVector().at(i) << "=" << t.getVector().at(i);
                 if (i < t.getVector().size()-1) {
                     cout << ", ";
                 }
@@ -160,9 +162,6 @@ bool Relation::Unite(Relation relation2) {
 
             }
             Added = true;
-        }
-        else {
-            Added = false;
         }
     }
     return Added;

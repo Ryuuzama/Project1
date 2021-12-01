@@ -23,12 +23,13 @@ public:
     Relation(string name, Header header, set<Tuple> tupleSet);
     void toString () {
         for (Tuple t : tupleSet) {
+            cout << "  ";
             for (unsigned int i = 0; i < t.values.size();i++) {
                 if(i == t.values.size()-1) {
-                    cout << "  " << header.Attributes.at(i) << "=" << t.values.at(i) << endl;
+                    cout << header.Attributes.at(i) << "=" << t.values.at(i) << endl;
                 }
                 else {
-                    cout << "  " << header.Attributes.at(i) << "=" << t.values.at(i) << ", ";
+                    cout << header.Attributes.at(i) << "=" << t.values.at(i) << ", ";
                 }
             }
         }
