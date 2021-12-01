@@ -110,7 +110,6 @@ void Interpreter::evaluateRules() {
         }
         index++;
     }
-    cout << endl;
     cout << endl << "Schemes populated after " << index << " passes through the Rules." << endl << endl;
 }
 
