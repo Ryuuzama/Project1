@@ -98,6 +98,7 @@ void Interpreter::evaluateAllQueries() {
 
 void Interpreter::evaluateRules() {
     vector<Rules> rulesVector = newDatalogProgram.getRulesVector();
+    cout << "Rule Evaluation" << endl;
     bool Added = true;
     int index = 0;
     while (Added) { //loop over and over until finally a tuple wasn't added (unite was called and it didn't add it)
