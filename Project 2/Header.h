@@ -11,7 +11,9 @@ class Header {
 public:
     Header(){}
     vector<string> Attributes;
+    pair<int, int> pair1;
     void setHeader (vector<Parameter> parameters) {
+        Attributes.clear();
         for (unsigned int i = 0; i < parameters.size(); i++) {
             Attributes.push_back(parameters.at(i).toString());
         }

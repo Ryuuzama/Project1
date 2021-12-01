@@ -14,6 +14,8 @@ public:
     void Interpret();
     Relation evaluatePredicate(Predicate p);
     void evaluateAllQueries();
+    void evaluateRules();
+    bool evaluateRule(Rules rule);
 
 private:
     DatalogProgram newDatalogProgram;

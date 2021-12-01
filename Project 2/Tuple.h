@@ -14,13 +14,19 @@ public:
     bool operator< (const Tuple &rhs) const {
         return values < rhs.values;
     }
-    void setTuple (vector<Parameter> facts) {
+    void setTuple (vector<string> facts) {
         for (unsigned int i = 0; i < facts.size(); i++) {
-            values.push_back(facts.at(i).toString());
+            values.push_back(facts.at(i));
         }
     };
     vector<string> getVector(){
         return values;
+    }
+    int getSize() {
+        return values.size();
+    }
+    void addtoTuple (string s){
+        values.push_back(s);
     }
 };
 

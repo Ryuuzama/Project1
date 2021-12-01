@@ -22,7 +22,7 @@ public:
             cout << endl;
         }
     }
-    Relation getFromMap(string s) {
+    Relation& getFromMap(string s) {
         return relationMap.at(s);
     };
 

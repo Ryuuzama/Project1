@@ -13,6 +13,12 @@ public:
     vector <Predicate> multiplePredicates;
     Predicate headPredicate;
     string toString();
+    vector<Predicate>  getBody(){
+        return multiplePredicates;
+    }
+    Predicate  getHead(){
+        return headPredicate;
+    }
 };
 
 

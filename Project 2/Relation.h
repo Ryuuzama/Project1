@@ -13,6 +13,9 @@ private:
     string name;
     Header header;
     set<Tuple> tupleSet;
+    vector<pair<int,int>> pairVector;
+    pair<int, int> pair1;
+    bool Added;
 public:
     Header getHeader();
     set<Tuple> getTupleSet();
@@ -54,6 +57,13 @@ public:
     Relation selectSameValue(int position, int position2);
     Relation Project(vector<int> positions);
     void Rename(Header newHeader);
+
+    // FOR PROJECT 4
+    Header combineHeaders(Relation relation1);
+    Relation Join(Relation relation1);
+    bool isJoinable (Tuple tuple1, Tuple tuple2);
+    Tuple combineTuples(Tuple tuple1, Tuple tuple2);
+    bool Unite(Relation relation2);
 
 };
 

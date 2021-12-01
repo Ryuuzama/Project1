@@ -25,7 +25,7 @@ void Interpreter::Interpret() {
             newRelation.setHeader(newHeader);
             for (unsigned int j = 0; j < factsVector.size(); j++) {
                 if (factsVector.at(j).getName() == schemesVector.at(i).getName()) {
-                    newTuple.setTuple(factsVector.at(j).GetParameters());
+                    newTuple.setTuple(factsVector.at(j).getParameterStrings());
                     newRelation.addTuple(newTuple);
                     newTuple = Tuple();
                 }
@@ -78,6 +78,7 @@ Relation Interpreter::evaluatePredicate(Predicate p) {
 void Interpreter::evaluateAllQueries() {
     vector<Predicate> queryVector = newDatalogProgram.getQueriesVector();
     Relation finalRelation;
+    cout << "Query Evaluation" << endl;
     for (unsigned int i =0; i < queryVector.size(); i++) {
         finalRelation = evaluatePredicate(queryVector.at(i));
         if (finalRelation.isEmpty()) {
@@ -92,6 +93,53 @@ void Interpreter::evaluateAllQueries() {
 
 
     }
+
+}
+
+void Interpreter::evaluateRules() {
+    vector<Rules> rulesVector = newDatalogProgram.getRulesVector();
+    bool Added = true;
+    int index = 0;
+    while (Added) { //loop over and over until finally a tuple wasn't added (unite was called and it didn't add it)
+        Added = false;
+        for (unsigned int i = 0; i < rulesVector.size(); i++) {
+            if (evaluateRule(rulesVector.at(i))) {
+                Added = true;
+            }
+            index++;
+        }
+    }
+    cout << endl;
+    cout << endl << "Schemes populated after " << index << " passes through the Rules." << endl << endl;
+}
+
+bool Interpreter::evaluateRule(Rules rule) {
+    //evaluate predicates
+    //join the resulting relations
+    //project the columns that appear in head predicate
+    //rename the relation to make it union-compatible
+    //union the relation in the database
+    Relation finalRelation = evaluatePredicate(rule.getBody().at(0));
+    Relation addRelation;
+    vector<int> indexes;
+    for(unsigned int j =1; j < rule.getBody().size(); j++) {
+        addRelation = evaluatePredicate(rule.getBody().at(j));
+        finalRelation = finalRelation.Join(addRelation);
+    }
+
+    for(unsigned int i =0; i < rule.getHead().GetParameters().size(); i++){
+        string value = rule.getHead().GetParameters().at(i).name;
+        for(unsigned int j =0; j < finalRelation.getHeader().getVector().size(); j++){
+            string value2 = finalRelation.getHeader().getVector().at(j);
+            if(value == value2){
+                indexes.push_back(j);
+            }
+        }
+    }
+
+    finalRelation = finalRelation.Project(indexes);
+    cout << rule.toString() << "." << endl;
+    return newDatabase.getFromMap(rule.getHead().getName()).Unite(finalRelation);
 
 }
 

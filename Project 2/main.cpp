@@ -46,6 +46,7 @@ int main(int argc, char** argv) {
     datalogprogramObject = parser.getDatalogProgram();
     Interpreter interpreterObject(datalogprogramObject);
     interpreterObject.Interpret();
+    interpreterObject.evaluateRules();
     interpreterObject.evaluateAllQueries();
 
 

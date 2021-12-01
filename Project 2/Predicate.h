@@ -16,8 +16,6 @@ public:
     string name;
     vector<Parameter> preParameter;
 
-    const vector<Parameter> &getPreParameter() const;
-
     string toString();
     void setName(string newName) {
         name = newName;
@@ -34,6 +32,13 @@ public:
     }
     vector<Parameter> GetParameters(){
         return preParameter;
+    }
+    vector<string> getParameterStrings() {
+        vector<string> newStringVector;
+        for (unsigned int i = 0; i < preParameter.size(); i++) {
+            newStringVector.push_back(preParameter.at(i).toString());
+        }
+        return newStringVector;
     }
 
 };
