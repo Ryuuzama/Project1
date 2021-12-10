@@ -22,6 +22,7 @@ private:
     Database newDatabase;
     Relation newRelation;
     Header newHeader;
+    int index1;
 };
 
 

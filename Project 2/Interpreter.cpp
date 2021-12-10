@@ -7,6 +7,7 @@ using namespace std;
 #include "Predicate.h"
 #include "Relation.h"
 #include "Database.h"
+#include "Graph.h"
 
 Interpreter::Interpreter(DatalogProgram datalogProgram) {
     newDatalogProgram = datalogProgram; //store DatalogProgram as a data member
@@ -98,27 +99,59 @@ void Interpreter::evaluateAllQueries() {
 
 void Interpreter::evaluateRules() {
     vector<Rules> rulesVector = newDatalogProgram.getRulesVector();
+    Graph newGraph(rulesVector);
+    newGraph.Run();
     cout << "Rule Evaluation" << endl;
     bool Added = true;
     int index = 0;
-    while (Added) { //loop over and over until finally a tuple wasn't added (unite was called and it didn't add it)
+    vector<int> form;
+
+
+    for (const auto& scc : newGraph.getSCCVector()) {
         Added = false;
-        for (unsigned int i = 0; i < rulesVector.size(); i++) {
-            if (evaluateRule(rulesVector.at(i))) {
-                Added = true;
+        cout << "SCC: ";
+        form.clear();
+        for (const int& m : scc) {
+            unsigned int index2;
+            index2++;
+            if (index2 != scc.size()) {
+                cout << "R" << m << ",";
+            }
+            else {
+                cout << "R" << m;
+            }
+            form.push_back(m);
+        }
+        cout << endl;
+        do {
+            Added = false;
+            for (const int& m : scc) {
+                if (evaluateRule(rulesVector.at(m))) {
+                    Added = true;
+                    index++;
+                }
+            }
+        } while (Added);
+        cout << index << " passes: ";
+        for(unsigned int i = 0; i < form.size(); i++) {
+            if(i != form.size()-1) {
+                cout << "R" << form.at(i) << ",";
+            }
+            else {
+                cout << "R" << form.at(i);
             }
         }
-        index++;
+        cout << endl;
     }
-    cout << endl << "Schemes populated after " << index << " passes through the Rules." << endl << endl;
+    cout << endl;
 }
-
 bool Interpreter::evaluateRule(Rules rule) {
     //evaluate predicates
     //join the resulting relations
     //project the columns that appear in head predicate
     //rename the relation to make it union-compatible
     //union the relation in the database
+    index1++;
     Relation finalRelation = evaluatePredicate(rule.getBody().at(0));
     Relation addRelation;
     vector<int> indexes;
